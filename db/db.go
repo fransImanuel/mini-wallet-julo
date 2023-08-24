@@ -23,6 +23,9 @@ func (w *Wallet) DisableWallet(key string) error {
 	if e, ok := w.walletData[key]; !ok {
 		return errors.New("Token Is Unregistered")
 	} else {
+		if e.IsActive == false {			
+			return errors.New("Token Is Unregistered")
+		}
 		e.IsActive = false
 		w.walletData[key] = e
 	}
